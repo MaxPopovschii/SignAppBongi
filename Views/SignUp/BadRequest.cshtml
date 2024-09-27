@@ -1,0 +1,41 @@
+@model SignAppBongi.Models.UserModel
+
+@{
+    ViewData["Title"] = "User Already Registered";
+}
+
+<div style="max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background-color: #fff;">
+    <h2 style="color: #dc3545; font-size: 1.5rem;">Utente gia registrato</h2>
+
+    <div style="margin-bottom: 20px;">
+        <p style="font-size: 1rem; color: #333;">
+            Un utente con questo indirizzo email <strong>@Model.Email</strong> è gia stato registrato.
+        </p>
+    </div>
+
+    <div>
+        <p style="font-size: 1rem; color: #555;">
+			Se vuoi registrarti con un' altro indirizzo email, fai clic sotto:
+        </p>
+        <a href="/SignUp/Create" style="
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        " onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">
+            Torna alla registrazione
+        </a>
+    </div>
+</div>
+
+
+
+<script>
+    setTimeout(()=>{
+            location.href="./Create"
+    },30000);
+</script>

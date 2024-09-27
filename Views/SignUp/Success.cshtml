@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Registrazione con successo";
+}
+
+<div style="
+    max-width: 600px; 
+    margin: 50px auto; 
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1); 
+    background-color: #f8f9fa; 
+    text-align: center;
+    border: 1px solid #e9ecef;
+">
+    <h2 style="
+        color: #28a745; 
+        font-size: 2rem; 
+        margin-bottom: 20px;
+    ">
+        Registrazione avvenuta con successo!
+    </h2>
+
+    <p style="
+        font-size: 1.1rem; 
+        color: #343a40; 
+        margin-bottom: 30px;
+    ">
+        Your account è stato creato.
+    </p>
+
+    <a href="/SignUp/Create" style="
+        display: inline-block;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        color: #fff;
+        background-color: #28a745;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    " 
+    onmouseover="this.style.backgroundColor='#218838'; this.style.transform='scale(1.05)'" 
+    onmouseout="this.style.backgroundColor='#28a745'; this.style.transform='scale(1)'">
+        Torna alla registrazione
+    </a>
+</div>
+
+<script>
+    setTimeout(()=>{
+            location.href="./Create"
+    },10000);
+</script>

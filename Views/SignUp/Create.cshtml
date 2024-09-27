@@ -1,0 +1,193 @@
+﻿@model SignAppBongi.Models.UserModel
+@{
+    ViewData["Title"] = "Home Page";
+    string minDate = $"{DateTime.Now.Year}-01-01";
+    string maxDate = $"{DateTime.Now.Year}-12-31";
+} 
+
+
+    <div class="container">
+         <form id="frm-signup" method="post" action="/SignUp/Create" enctype="multipart/form-data"> 
+             <div class="row">
+                 <div class=" col-xs-12 col-sm-6">
+                     <div class="form-group" >
+                        <label for="txt-name">Nome</label>
+                        <input type="text" class="form-control" required id="txt-name" name="name" placeholder="Inserisci il tuo nome">
+                      </div>
+                 </div>
+                 <div class="col-xs-12 col-sm-6">
+                      <div class="form-group" >
+                        <label for="txt-surname">Cognome</label>
+                        <input type="text" class="form-control" required id="txt-surname" name="surname" placeholder="Inserisci il tuo cognome">
+                      </div>
+                 </div>
+
+                  
+             </div>
+             <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group" >
+                        <label for="txt-birthday">Compleanno</label>
+                        <input type="date" class="form-control" required id="txt-birthday" min="@minDate" max="@maxDate"  name="DateOfBirth" placeholder="giorno/mese">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                  <div class="form-group" >
+                    <label for="txt-email">Email</label>
+                    <input type="email" class="form-control" required id="txt-email" pattern='[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$'  name="Email" placeholder="Inserisci email" >
+                  </div>
+                </div>
+            </div>
+          <hr />
+              <div id="card-privacy" class="card">
+                      <div class="card-header">
+                         <button id="btn-fullscreen" type="button"><i class="bi bi-arrows-fullscreen"></i></button> Privacy Policies
+                      </div>
+                      <div class="card-body">
+                        <iframe id="privacypolices" src="https://policies.google.com/privacy?hl=en-US" > </iframe> 
+                      </div>
+                      <div class="card-footer">
+                          <div class="form-check" style="margin-top:10px;margin-bottom:10px;">
+                            <input type="checkbox" class="form-check-input" name="AgreeToTerms" id="chk-agree">
+                            <label class="form-check-label" for="chk-agree">Autorizzo al trattamento dei dati personali</label>
+                          </div>
+                      </div>
+                </div> 
+         <div class="text-center">
+                <button id="btn-submit" type="button" style="margin-top:40px; " class="btn btn-primary text-left">Invia dati<i class="bi bi-arrow-right " style="float:right;font-size: 29px;"></i></button>
+             </div>
+             </form>
+       </div>
+       
+  
+    
+<script>
+    var opened=false;
+    $("#btn-fullscreen ").click(()=>{
+        if(!opened){
+            opened=true;
+            $("#card-privacy").css("position","fixed");
+            $("#card-privacy").css("top","30px");
+            $("#card-privacy").css("bottom","30px");
+            $("#card-privacy").css("left","30px");
+            $("#card-privacy").css("right","30px");
+            $("#card-privacy").css("z-index","10000");
+        }else{
+            opened=false;
+            $("#card-privacy").css("position","relative");
+            $("#card-privacy").css("top","0px");
+            $("#card-privacy").css("bottom","0px");
+            $("#card-privacy").css("left","0px");
+            $("#card-privacy").css("right","0px");
+        }});
+        $("#btn-submit").click(()=>{ 
+            let emailPattern=/^[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$/;
+            let isPrivacyAcepted=$('#chk-agree:checked').val()=='on'?true:false;
+            let isNameCompiled=$('#txt-name').val()!=''?true:false; 
+            let isSurnameCompiled=$('#txt-surname').val()!=''?true:false; 
+            let isBirthDayCompiled=$('#txt-birthday').val()!=''?true:false; 
+            let isEmailCompiled=$('#txt-email').val()!=''?true:false; 
+            let isEmailValid=emailPattern.test($('#txt-email').val());
+            if(!isNameCompiled){
+                    alert("E' necessario inserire un nome per continuare");
+                    return;
+            }
+            if(!isSurnameCompiled){
+                alert("E' necessario inserire un cognome per continuare");
+                return;
+            }
+            if(!isBirthDayCompiled){
+                alert("E' necessario specificare la data di compleanno per continuare");
+                return;
+            }
+            if(!isEmailCompiled){
+                alert("E' necessario specificare un indirizzo mail per continuare");
+                return;
+            }
+            if(!isEmailValid)
+            {
+                alert("L'indirizzo email inserito non è corretto");
+                return;
+            }
+            if(!isPrivacyAcepted){
+                alert("E' necessario accettare le privacy policies per continuare");
+                return;
+            }
+            $("#frm-signup").submit(); 
+            });
+</script>
+
+<style>
+    .form-group input {
+        border: 1px solid #0a3174;
+        border-radius: 23px;
+        box-shadow: 0px 0px 6px #666;
+    }
+
+    .form-group label {
+        line-height: 47px;
+        padding-left: 13px;
+        font-weight: 600;
+    }
+    iframe#privacypolices {
+        width: 100%;
+        display: block;
+        height: 100%;
+        margin-bottom:0px;
+    }
+
+    .card-body {
+        padding: 0px !important; 
+        height: 200px;
+    }
+    .card-header {
+        font-size: 18px;
+        line-height: 40px;font-weight: 600;
+        border-bottom: 1px solid #0a3174;
+        color: #0a3174;
+        background: #fff;
+        }
+    .card {
+        border: 1px solid #0a3174;
+        border-radius: 7px 7px 0 0;
+        box-shadow: 0px 0px 6px #666;
+    }
+    .form-group input {
+        font-size: 18px;
+        line-height: 40px;
+    }
+    .form-group {
+        margin-bottom: 40px;
+        color: #0a3174;
+        font-size: 21px;
+    }
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+    button#btn-fullscreen {
+        float: right;
+        display: block;
+        width: 62px;
+        height: 50px;
+        font-size: 27px;
+        background: #fff;
+        color: #0a3174;
+        border: 0px solid;
+        line-height: normal;
+    }
+    .card-header {
+        line-height: 48px;
+    }
+
+    button#btn-submit {
+        width: 300px;
+        text-align: left;
+        background: #0a3174;
+        border: 0;
+        height: 56px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 29px;
+    }
+</style>

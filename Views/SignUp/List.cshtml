@@ -1,0 +1,36 @@
+@model IEnumerable<SignAppBongi.Models.UserModel>
+
+<h1 class="text-center">Users List</h1>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning" role="alert">
+        No users found.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.Surname</td>
+                        <td>@user.Email</td>
+                        <td>@user.DateOfBirth</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

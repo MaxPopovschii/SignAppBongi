@@ -1,0 +1,57 @@
+html {
+    font-size: 14px;
+    color: #0a3174;
+}
+div#logo-container {
+    border: 4px solid #0a3174;
+    border-radius: 210px;
+    overflow: hidden;
+    height: 300px;
+    width: 300px;
+    position: relative;
+    background: #ffffff;
+    top: -155px;
+}
+div#logo-row {
+    height: 1px;
+    width: 100%;
+}
+img#site-logo {
+    position: relative;
+    width: 318px;
+    top: 34px;
+    left: -13px;
+}
+#top {
+    display: block;
+    width: 100%;
+    height: 200px;
+}
+
+#bottom {
+    border-top: 4px solid #0a3174;
+    display: block;
+    width: 100%;
+    min-height: 700px;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    background: #cbd1d2;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 0px;
+}
